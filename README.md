@@ -120,6 +120,8 @@ TEP/
 │   ├── GerenciadorCliente.java # Gerencia comunicação com cada cliente
 │   ├── EstadoJogo.java        # Gerencia estado global do jogo
 │   ├── Cliente.java           # Cliente principal
+│   ├── ClienteBot.java        # Cliente bot (jogador automático)
+│   ├── CriadorBot.java        # Utilitário para criar múltiplos bots
 │   ├── InterfaceUsuario.java  # Interface textual do cliente
 │   ├── Jogador.java           # Representa um jogador
 │   ├── Pergunta.java          # Representa uma pergunta
@@ -145,6 +147,15 @@ TEP/
 - ✅ Recebe e exibe estado atual do jogo
 - ✅ Interface textual intuitiva
 - ✅ Sistema de chat
+
+### Cliente Bot (Novo!)
+- ✅ Jogador automatizado para testes
+- ✅ Três estratégias de jogo:
+  - **Aleatória**: Responde aleatoriamente
+  - **Conservadora**: Para cedo para garantir prêmio
+  - **Agressiva**: Tenta ir até o fim
+- ✅ Criador de múltiplos bots simultâneos
+- ✅ Ideal para testes e demonstrações
 
 ## Regras do Jogo
 
@@ -185,6 +196,49 @@ Para testar o jogo:
    - Parar e garantir prêmio
    - Chat entre jogadores
    - Desconexão de jogadores
+
+### Testando com Bots
+
+Para facilitar os testes, você pode usar bots automatizados:
+
+#### Opção 1: Usando o Criador de Bots (Recomendado)
+
+```bash
+./executar_criador_bot.sh
+```
+
+O criador de bots permite:
+- Criar múltiplos bots de uma vez (1-10)
+- Escolher nome personalizado para cada bot
+- Selecionar estratégia individual (Aleatória, Conservadora ou Agressiva)
+- Gerenciar todos os bots de uma vez
+
+#### Opção 2: Executando Bots Individualmente
+
+```bash
+# Bot com nome e estratégia personalizados
+./executar_bot.sh NomeDoBot ALEATORIA
+
+# Exemplos:
+./executar_bot.sh Robozinho CONSERVADORA
+./executar_bot.sh MegaBot AGRESSIVA
+```
+
+Estratégias disponíveis:
+- `ALEATORIA` - Responde aleatoriamente, 10% chance de parar após nível 3
+- `CONSERVADORA` - Para após nível 5 (70% chance) ou nível 7 (90% chance)
+- `AGRESSIVA` - Tenta chegar longe, só para após nível 10 (30% chance)
+
+#### Opção 3: Modo Programático
+
+```bash
+cd src
+# Bot com nome automático
+java ClienteBot
+
+# Bot com nome e estratégia
+java ClienteBot MeuBot CONSERVADORA
+```
 
 ## Solução de Problemas
 
